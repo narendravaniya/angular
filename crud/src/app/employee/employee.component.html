@@ -1,0 +1,107 @@
+<form (ngSubmit)="f.form.valid && addPost(f)" #f="ngForm" novalidate autocomplete="off">
+  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+    <div class="form-group">
+        <label for="lastname" class="col-sm-4 control-label text-right" translate>Posttitle:
+            <span class="red-star">*</span>
+        </label>
+        <div class="col-sm-8">
+            <input type="text" name="title" id="title" placeholder="title" class="form-control" [(ngModel)]="post.title"
+                #title="ngModel" pattern="^[^\s]+[-a-zA-Z\s]+([-a-zA-Z]+)*$"required
+                [maxLength]=50>
+            <div *ngIf="f.submitted && !title.valid" class="text-danger" translate>Title required</div>
+            <div [ngClass]="{ 'has-error': f.submitted && !title.valid }"></div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+  <div class="form-group">
+      <label for="lastname" class="col-sm-4 control-label text-right" translate>body:
+          <span class="red-star">*</span>
+      </label>
+      <div class="col-sm-8">
+          <input type="text" name="body" id="body" placeholder="body" class="form-control" [(ngModel)]="post.body"
+              #body="ngModel" pattern="^[^\s]+[-a-zA-Z\s]+([-a-zA-Z]+)*$"required
+              [maxLength]=50>
+          <div *ngIf="f.submitted && !body.valid" class="text-danger" translate>body required</div>
+          <div [ngClass]="{ 'has-error': f.submitted && !body.valid }"></div>
+      </div>
+  </div>
+</div>
+
+<button class="btn btn-primary purple-reg-btn add-a-child-btn mgr-15">{{btntitle}}</button>
+</form>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+    <th>User ID</th>
+    <th>ID</th>
+	  <th>Title</th>
+    <th>Description</th>
+    <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of posts">
+    <td>{{post.userId}}</td>
+    <td>{{post.id}}</td>
+	  <td>{{post.title}}</td>
+    <td>{{post.body}}</td>
+    <td><button (click)="editData(post.id)">edit</button></td>
+    <td><button (click)="deleteData(post.id)">delete</button></td>
+    </tr>
+  </tbody>
+</table>
+<!--
+<form (ngSubmit)="f.form.valid && addEmployee(f)" #f="ngForm" novalidate autocomplete="off">
+    <div class='row mgr-15'>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <label for="lastname" class="col-sm-4 control-label text-right" translate>Firstname:
+                <span class="red-star">*</span>
+            </label>
+            <div class="col-sm-8">
+                <input type="text" name="first_name" id="first_name" placeholder="First Name" class="form-control" [(ngModel)]="employee.first_name"
+                    #first_name="ngModel" pattern="^[^\s]+[-a-zA-Z\s]+([-a-zA-Z]+)*$"required
+                    [maxLength]=50>
+                <div *ngIf="f.submitted && !first_name.valid" class="text-danger" translate>First Name required</div>
+                <div [ngClass]="{ 'has-error': f.submitted && !first_name.valid }"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="form-group">
+          <label for="country" class="col-sm-4 control-label text-right" translate>State
+            <span class="red-star">*</span>
+          </label>
+          <div class="col-sm-8">
+            <div class="select">
+              <select class="form-control select2 select2-hidden-accessibl" name="state_id" id="state_id" [(ngModel)]="employee.state_id"
+                #state_id="ngModel" required>
+                <option value="">Select State</option>
+                <option value="{{obj}}" *ngFor="let obj of ['vapi','mumbai','vetha']">
+                  {{obj}}
+                </option>
+              </select>
+            </div>
+            <div *ngIf="f.submitted && !state_id.valid" class="text-danger" >State required</div>
+            <div [ngClass]="{ 'has-error': f.submitted && !state_id.valid }"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+          <div class="form-group">
+              <label for="lastname" class="col-sm-4 control-label text-right">Gender:
+                  <span class="red-star">*</span>
+              </label>
+              <div class="col-sm-8">
+                  <input type="radio" name="employee.gender_id" [(ngModel)]="employee.gender_id"
+                  [value]="1" [checked]="employee.gender_id"> Male
+                  <input type="radio" name="employee.gender_id" [(ngModel)]="employee.gender_id"
+                  [value]="0" [checked]="!employee.gender_id"> Female
+              </div>
+          </div>
+      </div>
+    </div>
+    <button class="btn btn-primary purple-reg-btn add-a-child-btn mgr-15">add</button>
+</form>
+-->
